@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ModeToggle } from "../mode-toggle";
 
 const Navbar = () => {
   return (
@@ -7,11 +8,13 @@ const Navbar = () => {
       <div className="font-bold text-2xl"> TaskMaster</div>
       {/* nav links */}
       <div className="flex items-center gap-5">
-        <Link to="/">User</Link>
         <Link to="/task">Task</Link>
+        <Link to="/users">User</Link>
       </div>
       {/* dark/light mood */}
-      <div>dark/light</div>
+      <div>
+        <ModeToggle></ModeToggle>
+      </div>
     </nav>
   );
 };
