@@ -1,10 +1,9 @@
-import { Button } from "./components/ui/button";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
   return (
     <div>
-      <p>Basic todo APP</p>
-      <Button>Click me</Button>
+      <Navbar />
     </div>
   );
 }
