@@ -1,9 +1,9 @@
 import type { RootState } from "@/redux/store";
-import type { ITasks } from "@/taskTypes";
+import type { ITask } from "@/taskTypes";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {
-  tasks: ITasks[];
+  tasks: ITask[];
   filter: "all" | "low" | "high" | "medium";
 }
 
@@ -23,7 +23,7 @@ const initialState: IInitialState = {
       description: "create api",
       dueDate: "2025-11",
       isCompleted: false,
-      priority: "High",
+      priority: "Medium",
     },
   ],
   filter: "all",

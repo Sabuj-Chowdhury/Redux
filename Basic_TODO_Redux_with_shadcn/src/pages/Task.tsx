@@ -1,4 +1,4 @@
-import TaskCard from "@/components/task/TaskCard";
+import TaskCard from "@/components/module/task/TaskCard";
 import { selectTask } from "@/redux/features/task/taskSlice";
 import { useAppSelector } from "@/redux/hooks";
 
@@ -10,6 +10,7 @@ function Task() {
   // const tasks = useAppSelector((state) => state.todo.tasks);
   // console.log(tasks);
 
+  // way - 3 (preferred)
   const tasks = useAppSelector(selectTask);
   console.log(tasks);
 
@@ -19,10 +20,9 @@ function Task() {
         <h1 className="text-3xl font-bold">Tasks</h1>
       </div>
       <div className="space-y-5">
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
+        {tasks.map((task) => (
+          <TaskCard task={task}></TaskCard>
+        ))}
       </div>
     </div>
   );
