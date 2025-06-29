@@ -4,7 +4,7 @@ import { Checkbox } from "../../ui/checkbox";
 import type { ITask } from "@/taskTypes";
 import { cn } from "@/lib/utils";
 import { useAppDispatch } from "@/redux/hooks";
-import { toggleIsCompleted } from "@/redux/features/task/taskSlice";
+import { deleteTask, toggleIsCompleted } from "@/redux/features/task/taskSlice";
 
 interface IProps {
   task: ITask;
@@ -30,7 +30,11 @@ const TaskCard = ({ task }: IProps) => {
           </h1>
         </div>
         <div className="flex gap-3 items-center">
-          <Button variant="link" className="p-0 text-red-500 cursor-pointer">
+          <Button
+            onClick={() => dispatch(deleteTask(task.id))}
+            variant="link"
+            className="p-0 text-red-500 cursor-pointer"
+          >
             <Trash2 />
           </Button>
           <Checkbox onClick={() => dispatch(toggleIsCompleted(task.id))} />
