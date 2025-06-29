@@ -9,7 +9,16 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  tasks: [],
+  tasks: [
+    {
+      id: "36z-Fd7J8tW1OUs5O40CT",
+      isCompleted: false,
+      title: "Sit pariatur Anim e",
+      description: "Quod aliquam volupta",
+      priority: "Low",
+      dueDate: "2025-06-18T18:30:00.000Z",
+    },
+  ],
   filter: "all",
 };
 
@@ -38,6 +47,13 @@ const taskSlice = createSlice({
       const taskData = createTask(action.payload);
       state.tasks.push(taskData);
     },
+    toggleIsCompleted: (state, action: PayloadAction<string>) => {
+      state.tasks.forEach((task) =>
+        task.id === action.payload
+          ? (task.isCompleted = !task.isCompleted)
+          : task
+      );
+    },
   },
 });
 
@@ -49,5 +65,5 @@ export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask } = taskSlice.actions;
+export const { addTask, toggleIsCompleted } = taskSlice.actions;
 export default taskSlice.reducer;
