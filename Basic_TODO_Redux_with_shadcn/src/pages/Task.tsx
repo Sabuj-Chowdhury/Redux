@@ -1,3 +1,4 @@
+import TaskCard from "@/components/task/TaskCard";
 import { selectTask } from "@/redux/features/task/taskSlice";
 import { useAppSelector } from "@/redux/hooks";
 
@@ -12,7 +13,19 @@ function Task() {
   const tasks = useAppSelector(selectTask);
   console.log(tasks);
 
-  return <div>This the Task page</div>;
+  return (
+    <div>
+      <div className="flex justify-center items-center m-5">
+        <h1 className="text-3xl font-bold">Tasks</h1>
+      </div>
+      <div className="space-y-5">
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+      </div>
+    </div>
+  );
 }
 
 export default Task;
