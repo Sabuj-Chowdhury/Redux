@@ -32,7 +32,11 @@ const initialState: IInitialState = {
 const taskSlice = createSlice({
   name: "task",
   initialState,
-  reducers: {},
+  reducers: {
+    addTask: (state, action) => {
+      state.tasks.push(action.payload);
+    },
+  },
 });
 
 export const selectTask = (state: RootState) => {
@@ -43,4 +47,5 @@ export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
+export const { addTask } = taskSlice.actions;
 export default taskSlice.reducer;
