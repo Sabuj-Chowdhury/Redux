@@ -37,7 +37,10 @@ const TaskCard = ({ task }: IProps) => {
           >
             <Trash2 />
           </Button>
-          <Checkbox onClick={() => dispatch(toggleIsCompleted(task.id))} />
+          <Checkbox
+            checked={task.isCompleted}
+            onClick={() => dispatch(toggleIsCompleted(task.id))}
+          />
         </div>
       </div>
       <p className="mt-5">{task.description}</p>
