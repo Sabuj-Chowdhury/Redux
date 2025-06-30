@@ -3,8 +3,9 @@ import { Button } from "../../ui/button";
 import { Checkbox } from "../../ui/checkbox";
 import type { ITask } from "@/taskTypes";
 import { cn } from "@/lib/utils";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { deleteTask, toggleIsCompleted } from "@/redux/features/task/taskSlice";
+import { selectUser } from "@/redux/features/user/userSlice";
 
 interface IProps {
   task: ITask;
@@ -12,6 +13,8 @@ interface IProps {
 
 const TaskCard = ({ task }: IProps) => {
   const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUser);
+  const assignedToUser = users.find((user) => user.id === task.assignedTo);
 
   return (
     <div className="border px-5 py-3 rounded-md">
@@ -44,6 +47,9 @@ const TaskCard = ({ task }: IProps) => {
         </div>
       </div>
       <p className="mt-5">{task.description}</p>
+      <p className="mt-5">
+        Assigned to : {assignedToUser ? assignedToUser.name : "no one"}
+      </p>
     </div>
   );
 };
