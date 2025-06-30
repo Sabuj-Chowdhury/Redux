@@ -1,3 +1,4 @@
+import type { RootState } from "@/redux/store";
 import type { IUser } from "@/taskTypes";
 import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
 
@@ -25,6 +26,10 @@ const userSlice = createSlice({
     },
   },
 });
+
+export const selectUser = (state: RootState) => {
+  return state.users.user;
+};
 
 export const { addUser } = userSlice.actions;
 
