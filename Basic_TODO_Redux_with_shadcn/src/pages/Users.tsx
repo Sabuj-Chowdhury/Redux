@@ -6,7 +6,7 @@ import { useAppSelector } from "@/redux/hooks";
 
 const Users = () => {
   const users = useAppSelector(selectUser);
-  console.log(users);
+  // console.log(users);
   return (
     <div>
       <div className="flex justify-center items-center">
