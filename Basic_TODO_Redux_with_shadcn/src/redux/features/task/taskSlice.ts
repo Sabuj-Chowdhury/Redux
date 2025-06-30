@@ -15,7 +15,7 @@ const initialState: IInitialState = {
       isCompleted: false,
       title: "Sit pariatur Anim e",
       description: "Quod aliquam volupta",
-      priority: "Low",
+      priority: "low",
       dueDate: "2025-06-18T18:30:00.000Z",
     },
   ],
@@ -57,6 +57,12 @@ const taskSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    filterTask: (
+      state,
+      action: PayloadAction<"low" | "medium" | "high" | "all">
+    ) => {
+      state.filter = action.payload;
+    },
   },
 });
 
@@ -68,5 +74,6 @@ export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask, toggleIsCompleted, deleteTask } = taskSlice.actions;
+export const { addTask, toggleIsCompleted, deleteTask, filterTask } =
+  taskSlice.actions;
 export default taskSlice.reducer;
