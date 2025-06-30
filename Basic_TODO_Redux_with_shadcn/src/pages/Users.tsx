@@ -1,4 +1,5 @@
 import { AddUserModal } from "@/components/module/user/AddUserModal";
+import UserCard from "@/components/module/user/UserCard";
 
 const Users = () => {
   return (
@@ -11,7 +12,12 @@ const Users = () => {
         <AddUserModal />
       </div>
       {/* user card */}
-      <div></div>
+      <div className="grid grid-cols-4 gap-5 m-5">
+        <UserCard />
+        <UserCard />
+        <UserCard />
+        <UserCard />
+      </div>
     </div>
   );
 };
