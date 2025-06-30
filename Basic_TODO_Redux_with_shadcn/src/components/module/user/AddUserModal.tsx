@@ -21,20 +21,24 @@ import { Input } from "@/components/ui/input";
 import { addUser } from "@/redux/features/user/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import type { IUser } from "@/taskTypes";
+import { useState } from "react";
 
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 export function AddUserModal() {
+  const [open, setOpen] = useState(false);
   const form = useForm();
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // console.log(data);
     dispatch(addUser(data as IUser));
+    setOpen(false);
+    form.reset();
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="cursor-pointer">Add User +</Button>
       </DialogTrigger>
