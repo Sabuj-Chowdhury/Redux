@@ -17,12 +17,16 @@ const initialState: IInitialState = {
       description: "Quod aliquam volupta",
       priority: "low",
       dueDate: "2025-06-18T18:30:00.000Z",
+      assignedTo: null,
     },
   ],
   filter: "all",
 };
 
-type DraftTask = Pick<ITask, "title" | "description" | "dueDate" | "priority">;
+type DraftTask = Pick<
+  ITask,
+  "title" | "description" | "dueDate" | "priority" | "assignedTo"
+>;
 
 const createTask = (taskData: DraftTask): ITask => {
   return { id: nanoid(), isCompleted: false, ...taskData };
