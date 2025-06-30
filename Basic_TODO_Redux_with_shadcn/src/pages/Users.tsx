@@ -1,3 +1,5 @@
+import { AddUserModal } from "@/components/module/user/AddUserModal";
+
 const Users = () => {
   return (
     <div>
@@ -5,7 +7,9 @@ const Users = () => {
         <h1 className="text-3xl font-bold">Users</h1>
       </div>
       {/* add user modal/dialog */}
-      <div className="flex justify-end gap-5 items-center m-2"></div>
+      <div className="flex justify-center gap-5 items-center m-2">
+        <AddUserModal />
+      </div>
       {/* user card */}
       <div></div>
     </div>
