@@ -1,7 +1,12 @@
 import { AddUserModal } from "@/components/module/user/AddUserModal";
 import UserCard from "@/components/module/user/UserCard";
 
+import { selectUser } from "@/redux/features/user/userSlice";
+import { useAppSelector } from "@/redux/hooks";
+
 const Users = () => {
+  const users = useAppSelector(selectUser);
+  console.log(users);
   return (
     <div>
       <div className="flex justify-center items-center">
@@ -13,10 +18,9 @@ const Users = () => {
       </div>
       {/* user card */}
       <div className="grid grid-cols-4 gap-5 m-5">
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
+        {users.map((user) => (
+          <UserCard key={user.id} user={user}></UserCard>
+        ))}
       </div>
     </div>
   );
