@@ -18,24 +18,24 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addUser } from "@/redux/features/user/userSlice";
-import { useAppDispatch } from "@/redux/hooks";
-import type { IUser } from "@/taskTypes";
+// import { addUser } from "@/redux/features/user/userSlice";
+// import { useAppDispatch } from "@/redux/hooks";
+// import type { IUser } from "@/taskTypes";
 import { useState } from "react";
 
-import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export function AddUserModal() {
   const [open, setOpen] = useState(false);
   const form = useForm();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // console.log(data);
-    dispatch(addUser(data as IUser));
-    setOpen(false);
-    form.reset();
-  };
+  // const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  //   // console.log(data);
+  //   // dispatch(addUser(data as IUser));
+  //   setOpen(false);
+  //   form.reset();
+  // };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -48,7 +48,7 @@ export function AddUserModal() {
           <DialogDescription className="sr-only">add user</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          <form className="space-y-5">
             {/* name form field */}
             <FormField
               control={form.control}
