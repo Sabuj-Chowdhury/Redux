@@ -32,23 +32,37 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useCreateTaskMutation } from "@/redux/api/baseAPI";
 
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 export function AddTaskModal() {
   const [open, setOpen] = useState(false);
   const form = useForm();
   // const dispatch = useAppDispatch();
   // const users = useAppSelector(selectUser);
-  // const onSubmit: SubmitHandler<FieldValues> = (data) => {
-  //   // console.log(data);
-  //   dispatch(addTask(data as ITask));
-  //   setOpen(false);
-  //   form.reset();
-  // };
+
+  const [createTask, { isLoading }] = useCreateTaskMutation();
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    // console.log(data);
+    const taskData = {
+      ...data,
+      isCompleted: false,
+    };
+
+    const res = await createTask(taskData);
+    // console.log(res);
+    setOpen(false);
+    form.reset();
+  };
+
+  if (isLoading) {
+    return <>Loading ...</>;
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -63,7 +77,7 @@ export function AddTaskModal() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form className="space-y-5">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             {/* title form field */}
             <FormField
               control={form.control}
@@ -117,7 +131,7 @@ export function AddTaskModal() {
             />
 
             {/* assigned to task to user */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="assignedTo"
               render={({ field }) => (
@@ -132,15 +146,15 @@ export function AddTaskModal() {
                         <SelectValue placeholder="Select to Assign task" />
                       </SelectTrigger>
                     </FormControl>
-                    {/* <SelectContent>
+                    <SelectContent>
                       {users.map((user) => (
                         <SelectItem value={user.id}>{user.name}</SelectItem>
                       ))}
-                    </SelectContent> */}
+                    </SelectContent>
                   </Select>
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* due date */}
             <FormField
